@@ -26,7 +26,7 @@ class RankingController < ApplicationController
           earning_per_million: '--',
           seven_year_yield: '--',
           scale: '--',
-          code: latest_log.product.code
+          code: product.code
         }
       end
       @rankings.sort_by!{ |log| log[:earning_per_million] }.reverse!
