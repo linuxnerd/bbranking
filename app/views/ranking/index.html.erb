@@ -1,0 +1,87 @@
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+  <caption><%= Log.latest.take.earning_date unless Log.latest.blank? %></caption>
+  <thead>
+    <tr>
+      <th>排名</th>
+      <th>产品名</th>
+      <th>货币基金</th>
+      <th>万份收益</th>
+      <th>七日年化利率</th>
+      <th>规模</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rankings.each_with_index do |ranking, index| %>
+      
+      <tr>
+        <td><%= index + 1 %></td>
+        <td>
+          <% if ranking[:ranking] == 'up' %>
+            <i class='uk-icon-arrow-up'></i>
+          <% elsif ranking[:ranking] == 'down' %>
+            <i class='uk-icon-arrow-down'></i>
+          <% else %>
+            <i class='uk-icon-minus'></i>
+          <% end %>
+          <%= ranking[:name] %>
+        </td>
+        <td><%= ranking[:money_fund] %></td>
+        <td><%= ranking[:earning_per_million] %></td>
+        <td><%= ranking[:seven_year_yield] %></td>
+        <td><%= ranking[:scale] %></td>
+        <td>
+          <a href="#modal-<%= index %>"
+            class='uk-icon-button uk-icon-bar-chart-o'
+            data-uk-modal
+            data-uk-tooltip title="年化收益率"/>
+        </td>
+      </tr>
+      <div id="modal-<%= index %>" class="uk-modal">
+        <div class="uk-modal-dialog ">
+          <a class="uk-modal-close uk-close"></a>
+          <div id="chart-<%= index %>"></div>
+        </div>
+      </div>
+<script type="text/javascript">
+  $(function () {
+    $("#chart-<%= index %>").highcharts({
+      chart: {
+        width: 530
+      },
+      title: {
+        text: '七日年化收益率',
+          x: -20 //center
+      },
+      subtitle: {
+        text: '年化收益七天走势',
+        x: -20
+      },
+      xAxis: {
+        categories: <%= raw @seven_days[ranking[:code].to_sym] %>
+      },
+      yAxis: {
+        title: {
+          text: '七日年化收益率（%）'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      tooltip: {
+        valueSuffix: '°C'
+      },
+
+      series: [{
+        name: "<%= ranking[:name] %>",
+        data: <%= raw @seven_days_earning[ranking[:code].to_sym] %>
+      }]
+    });
+  });
+</script>
+    <% end %>
+  <tbody>
+</table>
+

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  earning_date: 2014-07-15
+  seven_year_yield: MyString
+  earning_per_million: MyString
+  scale: MyString
+  ranking: MyString
+  product_id: 1
+
+two:
+  earning_date: 2014-07-15
+  seven_year_yield: MyString
+  earning_per_million: MyString
+  scale: MyString
+  ranking: MyString
+  product_id: 1
