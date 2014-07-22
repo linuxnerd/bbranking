@@ -37,10 +37,7 @@ class RankingController < ApplicationController
       product.logs.where(product_id: product).order("earning_date").limit(7).each do |el|
         @seven_days[product.code.to_sym] << el.earning_date.strftime('%m-%d')
         @seven_days_earning[product.code.to_sym] << el.seven_year_yield.to_f
-      end
-      
-      p @seven_days_earning
-      
+      end      
     end
 
     
