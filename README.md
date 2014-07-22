@@ -9,3 +9,8 @@ cp config/database.yml.default config/database.yml
 ```shell
 whenever -i
 ```
+##TODO
+1. 用户系统
+2. 记账功能
+3. SEO优化
+4. 使用访问统计
