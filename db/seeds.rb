@@ -32,3 +32,13 @@ Product.create([
     code: "000607"
   }
 ])
+
+User.create([
+  {
+    email: "admin@g.com",
+    name: "Admin",
+    password: "qwe123",
+    password_confirmation: "qwe123",
+    role: "admin"
+  }
+])

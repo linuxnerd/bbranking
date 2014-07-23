@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BB Ranking</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta charset="utf-8" />
+  <meta name="description" content="overview &amp; stats" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <%= favicon_link_tag "32*32.ico" %>
+  <title>RANKS</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+  <%= notice_message %>
   <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
-    <nav class="uk-navbar uk-margin-large-bottom">
-        <div class="uk-navbar-content uk-navbar-center">
-          宝宝收益排行榜
-        </div>
-    </nav>
+    <%= render 'layouts/header' %>
     <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
   </div>
 
+  <div style="display:none;">
+    <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff29373261e4f157263f932748e6c8186' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+  </div>
 </body>
 </html>

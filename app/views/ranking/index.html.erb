@@ -1,3 +1,22 @@
+<div class='uk-float-left'>
+  <ul class="uk-subnav uk-subnav-pill">
+    <li class="uk-active">
+      <%= link_to '#' do %>
+        <i class="uk-icon-dashboard"></i>
+        Dashboard
+      <% end %>
+    </li>
+    <li>
+      <%= link_to root_path do %>
+        <i class="uk-icon-bars"></i>
+        收益排行
+      <% end %>
+    </li>
+  </ul>
+</div>
+<div class='uk-float-right'>
+  <%= link_to '记一笔投资', '#', class: 'uk-button uk-button-success uk-button-large' %>
+</div>
 <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
   <caption><%= Log.latest.take.earning_date unless Log.latest.blank? %></caption>
   <thead>

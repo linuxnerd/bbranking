@@ -1,0 +1,37 @@
+<nav class="uk-navbar uk-margin-large-bottom">
+  <%= link_to 'RANKS', root_path, class: 'uk-navbar-brand' %>
+  <div class="uk-navbar-flip">
+    <ul class="uk-navbar-nav">
+      <% if signed_in? %>
+        <li class="uk-parent" data-uk-dropdown>
+          <a href="#">账户 <i class="uk-icon-caret-down"></i></a>
+          <div class="uk-dropdown uk-dropdown-navbar">
+            <ul class="uk-nav uk-nav-navbar">
+              <% if current_user.admin? %>
+                <li>
+                  <%= link_to users_path do %>
+                    <i class="uk-icon-users"></i>
+                    用户管理
+                  <% end %>
+                </li>
+                <li class="uk-nav-divider"></li>
+              <% end %>
+              <li>
+                <%= link_to signout_path, method: "delete" do %>
+                  <i class="uk-icon-sign-out"></i>
+                  退出
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </li>
+      <% else %>
+        <li><%= link_to '注册', new_user_path %></li>
+        <li><%= link_to '登录', new_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="uk-navbar-content uk-navbar-center">
+    宝宝收益排行榜
+  </div>
+</nav>
