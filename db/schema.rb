@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723072509) do
+ActiveRecord::Schema.define(version: 20140724074310) do
 
   create_table "logs", force: true do |t|
     t.date     "earning_date"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20140723072509) do
     t.string   "money_fund"
     t.text     "url"
     t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.decimal  "amount",     precision: 13, scale: 2, default: 0.0
+    t.string   "type"
+    t.integer  "product_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

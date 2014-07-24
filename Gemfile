@@ -9,6 +9,7 @@ gem 'whenever', '0.9.0', require: false
 gem 'nokogiri', '1.6.1'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'simple_form'
+gem 'kaminari'
 
 group :development do
   gem 'spring'

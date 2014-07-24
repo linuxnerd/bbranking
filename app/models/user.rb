@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  paginates_per 10
+
+  has_many :transactions
+
   before_save { self.email = email.downcase }
   before_create :create_remember_token
 
@@ -7,10 +11,13 @@ class User < ActiveRecord::Base
   validates_presence_of :email, message: '不能为空'
   validates :name, :length=>{ maximum: 50, too_long: '太长了' }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, format: { with: VALID_EMAIL_REGEX, :message => '格式不正确' },
-    uniqueness: { case_sensitive: false }
-
-  validates_length_of :password, :within => 6..16, message: '长度不正确，应该在6到16位之间', on: :create
+  validates :email,
+            format: { with: VALID_EMAIL_REGEX, :message => '格式不正确' },
+            uniqueness: { case_sensitive: false }
+  validates_length_of :password,
+                      :within => 6..16,
+                      message: '长度不正确，应该在6到16位之间',
+                      on: :create
 
   # rails自带
   has_secure_password

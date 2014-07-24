@@ -1,0 +1,40 @@
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+  <caption>用户列表</caption>
+  <thead>
+    <tr>
+      <th>电子邮件地址</th>
+      <th>昵称</th>
+      <th>投资金额</th>
+      <th>投资收益</th>
+      <th>注册日期</th>
+      <th>最后登录IP</th>
+      <th>最后登录时间</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.name %></td>
+        <td>100.00</td>
+        <td>9.00</td>
+        <td><%= user.created_at.strftime("%Y-%m-%d") %></td>
+        <td><%= user.last_ip %></td>
+        <td><%= user.updated_at %></td>
+        <td>
+          <% if current_user.admin? && !current_user?(user) %>
+            <%= link_to '', user,
+                method: :delete,
+                class: 'uk-icon-button uk-icon-trash-o',
+                title: "删除",
+                :"data-uk-tooltip"=>'',
+                data: { confirm: '确定要删除用户吗？' }
+            %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @users %>

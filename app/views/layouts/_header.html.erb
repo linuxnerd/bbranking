@@ -1,4 +1,4 @@
-<nav class="uk-navbar uk-margin-large-bottom">
+<nav class="uk-navbar uk-margin-bottom">
   <%= link_to 'RANKS', root_path, class: 'uk-navbar-brand' %>
   <div class="uk-navbar-flip">
     <ul class="uk-navbar-nav">
@@ -32,6 +32,24 @@
     </ul>
   </div>
   <div class="uk-navbar-content uk-navbar-center">
-    宝宝收益排行榜
+    宝宝类理财收益记账助手
   </div>
 </nav>
+<div class='uk-float-left'>
+  <ul class="uk-subnav uk-subnav-pill">
+    <% if signed_in? %>
+      <li class= "<%= 'uk-active' if params[:controller] == 'dashboard' %>">
+        <%= link_to '#' do %>
+          <i class="uk-icon-dashboard"></i>
+          Dashboard
+        <% end %>
+      </li>
+    <% end %>
+    <li class= "<%= 'uk-active' if params[:controller] == 'ranking' %>">
+      <%= link_to root_path do %>
+        <i class="uk-icon-bars"></i>
+        收益排行
+      <% end %>
+    </li>
+  </ul>
+</div>
