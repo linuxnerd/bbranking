@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724074310) do
+ActiveRecord::Schema.define(version: 20140725041545) do
 
   create_table "logs", force: true do |t|
     t.date     "earning_date"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140724074310) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "start_date"
   end
 
   create_table "users", force: true do |t|

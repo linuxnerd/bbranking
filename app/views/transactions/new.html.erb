@@ -1,2 +1,59 @@
-<h1>Transactions#new</h1>
-<p>Find me in app/views/transactions/new.html.erb</p>
+<div class='uk-grid uk-grid-divider uk-text-center" data-uk-grid-margin uk-margin-top'>
+  <div class='uk-width-medium-1-2 '>
+    <%= form_for @transaction, html: {class: 'uk-panel uk-panel-box uk-form uk-form-stacked'} do |f| %>
+      <fieldset data-uk-margin>
+        <legend>记录一笔投资</legend>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.text_field :user_id, value: current_user.id, class: 'uk-hidden' %>
+        <div class="uk-form-row">
+          <%= radio_button :transaction, "type", "save" %>
+          <span class='uk-h3'><%= label_tag :transaction_type_save, "投资" %></span>
+          <%= radio_button :transaction, "type", "draw" %>
+          <span class='uk-h3'><%= label_tag :transaction_type_draw, "提现" %></span>
+        </div>
+        <div class="uk-form-row"></div>
+        <div class="uk-form-row">
+          <%= f.label :product_id, '购买产品', class: 'uk-form-label' %>
+          <%= f.select :product_id, Product.all.collect { |p| [p.name, p.id] }, {}, {class: ' uk-form-large'} %>
+        </div>
+        <div class="uk-form-row"></div>
+        <div class="uk-form-row">
+          <%= f.label :amount, '投资金额', class: 'uk-form-label' %>
+          <div class="uk-form-icon">
+            <i class="uk-icon-cny"></i>
+            <%= f.text_field :amount, class: 'uk-form-large' %>
+          </div>
+        </div>
+        <div class="uk-form-row"></div>
+        <div class="uk-form-row">
+          <%= f.label :start_date, '起息日期', class: 'uk-form-label' %>
+          <div class="uk-form-icon">
+            <i class="uk-icon-calendar"></i>
+            <%= f.text_field :start_date, class: 'uk-form-large',  :"data-uk-datepicker" => "{format:'YYYY-MM-DD'}" %>
+          </div>
+        </div>
+        <div class="uk-form-row"></div>
+        <div class="uk-form-row">
+          <%= button_tag class: 'uk-width-1-1 uk-button uk-button-primary uk-button-large' do %>
+            <i class='uk-icon-check'></i>
+            提交
+          <% end %>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+  <div class='uk-width-medium-1-2 '>
+    <dl class="uk-description-list uk-description-list-horizontal">
+      <dt>投资</dt><dd>购买理财产品</dd>
+      <dt>&nbsp;</dt><dd>&nbsp;</dd>
+      <dt>提现</dt><dd>提取现金，投资总金额会减少。如果为体现不用选择起息日期。</dd>
+      <dt>&nbsp;</dt><dd>&nbsp;</dd>
+      <dt>投资金额</dt>
+      <dd>请按照您实际的金额填写。</dd>
+      <dt>&nbsp;</dt><dd>&nbsp;</dd>
+      <dt>起息日期</dt>
+      <dd>不同的产品，起息日期不同，一般为T+1日。如果记录的是当天投资的产品，在15:00以前的填写<b>“<u>明天</u>”</b>为起息日期，在15:00以后的填写<b>“<u>后天</u>”</b>为起息日期；如果记录的是之前投资的产品，在当天收益收到后填写<b>“<u>今天</u>”</b>为起息日期。</dd>
+      <dt>&nbsp;</dt><dd>&nbsp;</dd>
+    </dl>
+  </div>
+</div>

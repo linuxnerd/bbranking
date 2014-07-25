@@ -35,21 +35,28 @@
     宝宝类理财收益记账助手
   </div>
 </nav>
-<div class='uk-float-left'>
-  <ul class="uk-subnav uk-subnav-pill">
-    <% if signed_in? %>
-      <li class= "<%= 'uk-active' if params[:controller] == 'dashboard' %>">
-        <%= link_to '#' do %>
-          <i class="uk-icon-dashboard"></i>
-          Dashboard
+<div class="uk-clearfix">
+  <div class='uk-float-left'>
+    <ul class="uk-subnav uk-subnav-pill">
+      <% if signed_in? %>
+        <li class= "<%= 'uk-active' if params[:controller] == 'dashboard' %>">
+          <%= link_to '#' do %>
+            <i class="uk-icon-dashboard"></i>
+            Dashboard
+          <% end %>
+        </li>
+      <% end %>
+      <li class= "<%= 'uk-active' if params[:controller] == 'ranking' %>">
+        <%= link_to root_path do %>
+          <i class="uk-icon-bars"></i>
+          收益排行
         <% end %>
       </li>
-    <% end %>
-    <li class= "<%= 'uk-active' if params[:controller] == 'ranking' %>">
-      <%= link_to root_path do %>
-        <i class="uk-icon-bars"></i>
-        收益排行
-      <% end %>
-    </li>
-  </ul>
+    </ul>
+  </div>
+  <% if params[:controller] == 'ranking' %>
+    <div class='uk-float-right'>
+      <%= link_to '记一笔投资', new_transaction_path, class: 'uk-button uk-button-success uk-button-large' %>
+    </div>
+  <% end %>
 </div>

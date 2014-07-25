@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   paginates_per 10
 
-  has_many :transactions
+  has_many :transactions, dependent: :destroy
 
   before_save { self.email = email.downcase }
   before_create :create_remember_token
