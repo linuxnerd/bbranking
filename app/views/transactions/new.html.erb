@@ -8,7 +8,7 @@
         <div class="uk-form-row">
           <%= radio_button :transaction, "type", "save" %>
           <span class='uk-h3'><%= label_tag :transaction_type_save, "投资" %></span>
-          <%= radio_button :transaction, "type", "draw" %>
+          <%= radio_button :transaction, "type", "draw", class: "draw" %>
           <span class='uk-h3'><%= label_tag :transaction_type_draw, "提现" %></span>
         </div>
         <div class="uk-form-row"></div>
@@ -46,7 +46,7 @@
     <dl class="uk-description-list uk-description-list-horizontal">
       <dt>投资</dt><dd>购买理财产品</dd>
       <dt>&nbsp;</dt><dd>&nbsp;</dd>
-      <dt>提现</dt><dd>提取现金，投资总金额会减少。如果为体现不用选择起息日期。</dd>
+      <dt>提现</dt><dd>提取现金，投资总金额会减少。如果为提现不用选择起息日期。</dd>
       <dt>&nbsp;</dt><dd>&nbsp;</dd>
       <dt>投资金额</dt>
       <dd>请按照您实际的金额填写。</dd>
