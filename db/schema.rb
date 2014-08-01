@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725041545) do
+ActiveRecord::Schema.define(version: 20140731072520) do
 
   create_table "logs", force: true do |t|
     t.date     "earning_date"
@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(version: 20140725041545) do
   end
 
   create_table "transactions", force: true do |t|
-    t.decimal  "amount",     precision: 13, scale: 2, default: 0.0
-    t.string   "type"
+    t.decimal  "amount",      precision: 13, scale: 2, default: 0.0
     t.integer  "product_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "start_date"
+    t.string   "invest_type"
   end
 
   create_table "users", force: true do |t|

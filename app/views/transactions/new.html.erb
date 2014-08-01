@@ -6,10 +6,10 @@
         <%= render 'shared/error_messages', object: f.object %>
         <%= f.text_field :user_id, value: current_user.id, class: 'uk-hidden' %>
         <div class="uk-form-row">
-          <%= radio_button :transaction, "type", "save" %>
-          <span class='uk-h3'><%= label_tag :transaction_type_save, "投资" %></span>
-          <%= radio_button :transaction, "type", "draw", class: "draw" %>
-          <span class='uk-h3'><%= label_tag :transaction_type_draw, "提现" %></span>
+          <%= radio_button :transaction, "invest_type", "save" %>
+          <span class='uk-h3'><%= label_tag :transaction_invest_type_save, "投资" %></span>
+          <%= radio_button :transaction, "invest_type", "draw", class: "draw" %>
+          <span class='uk-h3'><%= label_tag :transaction_invest_type_draw, "提现" %></span>
         </div>
         <div class="uk-form-row"></div>
         <div class="uk-form-row">
@@ -29,7 +29,7 @@
           <%= f.label :start_date, '起息日期', class: 'uk-form-label' %>
           <div class="uk-form-icon">
             <i class="uk-icon-calendar"></i>
-            <%= f.text_field :start_date, class: 'uk-form-large',  :"data-uk-datepicker" => "{format:'YYYY-MM-DD'}" %>
+            <%= f.text_field :start_date, class: 'uk-form-large',  :"data-uk-datepicker" => "{format:'YYYY-MM-DD'}", value: @default_date %>
           </div>
         </div>
         <div class="uk-form-row"></div>

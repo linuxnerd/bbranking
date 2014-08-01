@@ -3,6 +3,8 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
+    @default_date = default_start_date
+    
   end
 
   def create
@@ -16,6 +18,19 @@ class TransactionsController < ApplicationController
 
 private
   def transaction_params
-    params.require(:transaction).permit(:amount, :type, :product_id, :user_id)
+    params.require(:transaction).permit(:amount, :invest_type, :product_id,
+                                        :user_id, :start_date)
+  end
+
+  def default_start_date
+    if Date.today.tuesday? && Time.now.hour >= 15
+      Date.today.next_day.next_day.next_day.next_day
+    elsif Date.today.friday?
+      Date.today.next_day.next_day.next_day
+    elsif Date.today.saturday?
+      Date.today.next_day.next_day
+    else
+      Date.today.next_day
+    end
   end
 end
