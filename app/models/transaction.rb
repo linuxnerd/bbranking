@@ -9,25 +9,38 @@ class Transaction < ActiveRecord::Base
 
   validates :amount, format: { with: VALID_AMOUNT_REGEX, :message => '格式不正确' }
 
-  validate :above_balance?
+  validates_presence_of :start_date, message: '不能为空', if: ->{ invest_type == 'save' }
+  validate :above_balance?, :too_early?
+
+  scope :total_amount, Proc.new { |uid| where(user_id: uid, invest_type: 'save').sum(:amount) - where(user_id: uid, invest_type: 'draw').sum(:amount)}
 
 private
   def above_balance?
     if invest_type == "draw"
-      sum = 0
+      balance = 0
       Transaction.where(user_id: user_id).each do |t|
         if t.invest_type == "save"
-          sum += t.amount
+          balance += t.amount
         else
-          sum -= t.amount
+          balance -= t.amount
         end
       end
 
-      if sum < 0
+      if balance - amount < 0
         self.errors.add(:amount, "提现金额不能超过余额")
-        false
+        return false
       end
       true
     end
+  end
+
+  def too_early?
+    if invest_type == 'save' && !start_date.blank?
+      if start_date < Log.earlist_date(product_id)
+        self.errors.add(:start_date, "比数据库记录的日期还要早，您可以选择默认日期")
+        return false
+      end
+    end
+    true
   end
 end

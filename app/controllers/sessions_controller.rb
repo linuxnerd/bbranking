@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       sign_in user
       user.update_attribute(:last_ip, request.remote_ip)
-      redirect_back_or root_path
+      redirect_back_or dashboard_index_path
     else
       flash.now[:danger] = '用户名 / 密码不正确'
       render 'new'

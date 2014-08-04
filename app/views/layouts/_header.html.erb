@@ -40,7 +40,7 @@
     <ul class="uk-subnav uk-subnav-pill">
       <% if signed_in? %>
         <li class= "<%= 'uk-active' if params[:controller] == 'dashboard' %>">
-          <%= link_to '#' do %>
+          <%= link_to dashboard_index_path do %>
             <i class="uk-icon-dashboard"></i>
             Dashboard
           <% end %>
@@ -54,7 +54,7 @@
       </li>
     </ul>
   </div>
-  <% if params[:controller] == 'ranking' %>
+  <% if params[:controller] == 'ranking' or params[:controller] == 'dashboard' %>
     <div class='uk-float-right'>
       <%= link_to '记一笔投资', new_transaction_path, class: 'uk-button uk-button-success uk-button-large' %>
     </div>

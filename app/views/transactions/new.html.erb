@@ -14,7 +14,7 @@
         <div class="uk-form-row"></div>
         <div class="uk-form-row">
           <%= f.label :product_id, '购买产品', class: 'uk-form-label' %>
-          <%= f.select :product_id, Product.all.collect { |p| [p.name, p.id] }, {}, {class: ' uk-form-large'} %>
+          <%= f.select :product_id, Product.all.collect { |p| ["#{p.name}（#{p.money_fund}）", p.id] }, {}, {class: ' uk-form-large'} %>
         </div>
         <div class="uk-form-row"></div>
         <div class="uk-form-row">

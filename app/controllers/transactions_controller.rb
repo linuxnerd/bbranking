@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
     if @transaction.save
-      redirect_to root_path, :flash => { :success=>"成功记录一笔投资" }
+      redirect_to dashboard_index_path, :flash => { :success=>"成功记录一笔投资" }
     else
       render 'new'
     end
