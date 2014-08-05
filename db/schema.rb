@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140805060746) do
   create_table "incomes", force: true do |t|
     t.integer  "product_id"
     t.integer  "user_id"
-    t.decimal  "amount"
+    t.decimal  "amount",       precision: 12, scale: 2, default: 0.0
     t.date     "earning_date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140805060746) do
   create_table "invests", force: true do |t|
     t.integer  "product_id"
     t.integer  "user_id"
-    t.decimal  "amount"
+    t.decimal  "amount",     precision: 12, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20140805060746) do
   end
 
   create_table "transactions", force: true do |t|
-    t.decimal  "amount",      precision: 13, scale: 2, default: 0.0
+    t.decimal  "amount",      precision: 12, scale: 2, default: 0.0
     t.integer  "product_id"
     t.integer  "user_id"
     t.datetime "created_at"

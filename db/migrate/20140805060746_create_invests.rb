@@ -3,7 +3,7 @@ class CreateInvests < ActiveRecord::Migration
     create_table :invests do |t|
       t.integer :product_id
       t.integer :user_id
-      t.decimal :amount
+      t.decimal :amount, :default => 0, :precision => 12, :scale => 2
 
       t.timestamps
     end
