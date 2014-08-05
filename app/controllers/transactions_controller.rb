@@ -23,14 +23,16 @@ private
   end
 
   def default_start_date
-    if Date.today.tuesday? && Time.now.hour >= 15
+    if Date.today.thursday? && Time.now.hour >= 15
       Date.today.next_day.next_day.next_day.next_day
     elsif Date.today.friday?
       Date.today.next_day.next_day.next_day
     elsif Date.today.saturday?
       Date.today.next_day.next_day
-    else
+    elsif Time.now.hour < 15
       Date.today.next_day
+    elsif Time.now.hour >= 15
+      Date.today.next_day.next_day
     end
   end
 end

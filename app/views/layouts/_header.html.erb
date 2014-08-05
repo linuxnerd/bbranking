@@ -7,6 +7,7 @@
           <a href="#">账户 <i class="uk-icon-caret-down"></i></a>
           <div class="uk-dropdown uk-dropdown-navbar">
             <ul class="uk-nav uk-nav-navbar">
+              <li class="uk-nav-header"><%= current_user.name %></li>
               <% if current_user.admin? %>
                 <li>
                   <%= link_to users_path do %>

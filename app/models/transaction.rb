@@ -12,21 +12,19 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :start_date, message: '不能为空', if: ->{ invest_type == 'save' }
   validate :above_balance?, :too_early?
 
-  scope :total_amount, Proc.new { |uid| where(user_id: uid, invest_type: 'save').sum(:amount) - where(user_id: uid, invest_type: 'draw').sum(:amount)}
+  after_save do
+    # 创建一笔交易后
+    if invest_type == "save"
+      Invest.add_to_account(amount: amount, product_id: product_id, user_id: user_id)
+    else
+      Invest.minus_from_account(amount: amount, product_id: product_id, user_id: user_id)
+    end
+  end
 
 private
   def above_balance?
     if invest_type == "draw"
-      balance = 0
-      Transaction.where(user_id: user_id).each do |t|
-        if t.invest_type == "save"
-          balance += t.amount
-        else
-          balance -= t.amount
-        end
-      end
-
-      if balance - amount < 0
+      if Invest.balance(product_id, user_id) - amount < 0
         self.errors.add(:amount, "提现金额不能超过余额")
         return false
       end

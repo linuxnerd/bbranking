@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731072520) do
+ActiveRecord::Schema.define(version: 20140805060746) do
+
+  create_table "incomes", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.decimal  "amount"
+    t.date     "earning_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invests", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.decimal  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "logs", force: true do |t|
     t.date     "earning_date"
