@@ -17,8 +17,8 @@
       <tr>
         <td><%= user.email %></td>
         <td><%= user.name %></td>
-        <td>100.00</td>
-        <td>9.00</td>
+        <td><i class='uk-icon-cny'></i> <%= Invest.total_amount(user) %></td>
+        <td><i class='uk-icon-cny'></i> <%= Income.total_amount(user) %></td>
         <td><%= user.created_at.strftime("%Y-%m-%d") %></td>
         <td><%= user.last_ip %></td>
         <td><%= user.updated_at %></td>

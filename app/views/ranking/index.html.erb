@@ -18,9 +18,9 @@
         <td><%= index + 1 %></td>
         <td>
           <% if ranking[:ranking] == 'up' %>
-            <i class='uk-icon-arrow-up'></i>
+            <span class='up'><i class='uk-icon-arrow-up'></i></span>
           <% elsif ranking[:ranking] == 'down' %>
-            <i class='uk-icon-arrow-down'></i>
+            <span class='down'><i class='uk-icon-arrow-down'></i></span>
           <% else %>
             <i class='uk-icon-minus'></i>
           <% end %>
