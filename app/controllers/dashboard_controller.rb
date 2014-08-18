@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
     Invest.where(user_id: current_user.id).each do |invest|
       product = Product.find(invest.product_id)
       sum = Invest.where(product_id: product.id, user_id: current_user.id).take.amount
-      in_sum = Income.where(product_id: product.id, user_id: current_user.id, earning_date: Date.today.prev_day).inject(0) { |sum, el| 
+      in_sum = Income.where(product_id: product.id, user_id: current_user.id).inject(0) { |sum, el| 
         sum += el.amount
       }
       @all_money << [product.money_fund, sum.to_f] if sum > 0

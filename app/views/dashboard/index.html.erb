@@ -3,7 +3,7 @@
     <div class="uk-grid">
       <div class="uk-width-medium-1-2">
         <div class="uk-panel uk-panel-box" >
-          <p>今日总收益</p>
+          <p>总收益</p>
           <h1><i class='uk-icon-cny'></i> <%= @income_sum.to_f %></h1>
         </div>
       </div>
@@ -76,7 +76,7 @@ $(function () {
       plotShadow: false
     },
     title: {
-      text: '今日收益分配图'
+      text: '总收益分配图'
     },
     tooltip: {
       pointFormat: '<p>{series.name}: <b>{point.percentage:.1f} %</b><p><br/><p>收益额: <b>{point.y}元</b></p>'
